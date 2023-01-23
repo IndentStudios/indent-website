@@ -11,7 +11,7 @@ jobs:
   deploy:
     env:
       BOT_EMAIL: bot@indented.uk
-      BOT_NAME: Indented GitHub Bot
+      BOT_NAME: IndentBot
 
     runs-on: ubuntu-latest
 
