@@ -1,19 +1,19 @@
-import indentLogo from './assets/indent-logo.png'
 import {
   Container,
   Row,
   Col,
   ButtonGroup,
   Button
-} from 'react-bootstrap';
+} from 'react-bootstrap'
+import './App.scss'
 
-import './App.scss';
+import ReactGA from 'react-ga'
+import Logo from './assets/indent.svg?component'
 
-import ReactGA from 'react-ga';
 ReactGA.initialize('G-K7PEMZT73R');
-ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.pageview(window.location.pathname + window.location.search)
 
-const runAction = (action: string) => () => {
+const runAction = (action) => () => {
   // TODO: Log something into google analytics.
   ReactGA.event({action: action, category: 'website'}, ['webButtonClick'])
 
@@ -24,12 +24,12 @@ const runAction = (action: string) => () => {
   }
 }
 
-export const App = () => {
+const App = () => {
   return (
     <Container className="my-2">
       <Row>
         <Col>
-          <img src={indentLogo} alt="Indent logo" className="img-fluid" />
+          <Logo></Logo>
           <h1 className="text-center my-3">Indent Studios</h1>
           <h2 className="text-center my-3">High quality FiveM Tools & Resources.</h2>
         </Col>
@@ -45,3 +45,5 @@ export const App = () => {
     </Container>
   )
 }
+
+export default App

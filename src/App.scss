@@ -1,6 +1,5 @@
-/* The following block can be included in a custom.scss */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
-/* make the customizations */
 $theme-colors: (
     "primary": #ff7200,
 );
@@ -9,3 +8,12 @@ $body-bg: #000;
 $body-color: #efefef;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+
+body {
+    font-family: Montserrat, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
