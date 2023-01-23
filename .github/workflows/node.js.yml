@@ -9,20 +9,24 @@ on:
 
 jobs:
   deploy:
-    env:
-      BOT_EMAIL: bot@indented.uk
-      BOT_NAME: IndentBot
-
     runs-on: ubuntu-latest
-
+    env:
+      user_name: 'github-actions[bot]'
+      user_email: 'github-actions[bot]@users.noreply.github.com'
+      github_token: ${{ secrets.WEBSITE_ACTION_TOKEN }}
+      repository: ${{ github.repository }}
     strategy:
       matrix:
         node-version: [18.x]
     steps:
-    - run: git config --global user.email "$BOT_EMAIL" && git config --global user.name "$BOT_NAME"
-    - run: git remote set-url origin https://$BOT_NAME:${{ secrets.WEBSITE_ACTION_TOKEN}}@github.com/IndentStudios/website.git
+      run: |
+        git config --global user.name $user_name
+        git config --global user.email $user_email
+        git remote set-url origin https://${github_token}@github.com/${repository}
+        npm ci
+        npm run deploy
+
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
