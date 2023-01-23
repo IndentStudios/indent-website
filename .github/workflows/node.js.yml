@@ -10,17 +10,18 @@ on:
 jobs:
   deploy:
     env:
-      MY_EMAIL: bot@indented.uk
-      MY_NAME: Indented GitHub Bot
+      BOT_EMAIL: bot@indented.uk
+      BOT_NAME: Indented GitHub Bot
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+        node-version: [18.x]
     steps:
+    - run: git config --global user.email $BOT_EMAIL
+    - run: git config --global user.name $BOT_NAME
+    - run: git remote set-url origin https://$BOT_NAME:${{ secrets.WEBSITE_ACTION_TOKEN}}@github.com/IndentStudios/website.git
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
