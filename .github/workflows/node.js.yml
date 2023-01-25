@@ -30,11 +30,12 @@ jobs:
       run: |
         git config --global user.name $user_name
         git config --global user.email $user_email
-        git remote set-url origin https://$token:x-oauth-basic@github.com/IndentStudios/website.git
-        git remote set-url origin https://$token:x-oauth-basic@github.com/IndentStudios/website.git
+        git remote set-url origin https://$token:x-oauth-basic@github.com/$org/$repo_name.git
+        git remote set-url origin https://$token:x-oauth-basic@github.com/$org/$repo_name.git
         npm run deploy
       env:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
-        github_token: ${{ secrets.WEBSITE_ACTION_TOKEN }}
-        repository: ${{ github.repository }}
+        org: 'IndentStudios'
+        repo_name: 'website'
+        token: ${{ secrets.WEBSITE_ACTION_TOKEN }}
