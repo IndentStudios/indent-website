@@ -28,6 +28,7 @@ jobs:
 
     - name: Deploy
       run: |
+        export GITHUB_TOKEN=$token
         hub config --global hub.protocol https
         hub config --global user.name $user_name
         hub config --global user.email $user_email
@@ -39,4 +40,4 @@ jobs:
         user_email: 'github-actions[bot]@users.noreply.github.com'
         org: 'IndentStudios'
         repo_name: 'website'
-        token: ${{ secrets.WEBSITE_ACTION_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
