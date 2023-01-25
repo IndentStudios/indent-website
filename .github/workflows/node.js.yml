@@ -28,10 +28,11 @@ jobs:
 
     - name: Deploy
       run: |
-        git config --global user.name $user_name
-        git config --global user.email $user_email
-        git remote set-url origin https://$token:x-oauth-basic@github.com/$org/$repo_name.git
-        git remote set-url origin https://$token:x-oauth-basic@github.com/$org/$repo_name.git
+        hub config --global hub.protocol https
+        hub config --global user.name $user_name
+        hub config --global user.email $user_email
+        hub remote set-url origin https://$token:x-oauth-basic@github.com/$org/$repo_name.git
+        hub remote set-url origin https://$token:x-oauth-basic@github.com/$org/$repo_name.git
         npm run deploy
       env:
         user_name: 'github-actions[bot]'
